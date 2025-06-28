@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = 'ch.fhnw.sensoroverview' // Or your original namespace
+    namespace = 'ch.fhnw.sensoroverview'
     compileSdk = 34
 
     defaultConfig {
@@ -25,21 +25,37 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
-    // This is the correct placement for kotlinOptions, as a direct child of 'android'.
-    // The error occurs if the plugin above isn't applied. Line 33 is likely here.
+    // Optional: Enforce Java toolchain
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
+    // This sets the JVM target for any Kotlin code in your project.
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 }
 
 dependencies {
+    // Default Android dependencies
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // --- ADDED DEPENDENCIES ---
+    // Added Volley for making network requests. This fixes the 'com.android.volley' errors.
+    implementation 'com.android.volley:volley:1.2.1'
+    // Added Gson for parsing JSON data. This fixes the 'com.google.gson' errors.
+    implementation 'com.google.code.gson:gson:2.10.1'
+    // --- END OF ADDED DEPENDENCIES ---
+
+    // Default test dependencies
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
