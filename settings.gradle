@@ -1,0 +1,20 @@
+// settings.gradle
+
+pluginManagement {
+    repositories {
+        // These lines tell Gradle where to find plugins 🕵️‍♂️
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        // These lines tell Gradle where to find your app's libraries
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "SensorOverview"
+include ':app'
